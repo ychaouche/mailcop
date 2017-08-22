@@ -18,7 +18,7 @@ Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:
 Requirements:
 
     You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
-    If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot sor SASL authentication.
+    If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
 
 Stats :
 
@@ -74,3 +74,5 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins
      17 application@mydomain.tld
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
 ```
+
+Questions / criticisme to @ychaouche
