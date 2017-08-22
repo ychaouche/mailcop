@@ -1,0 +1,1 @@
+grep -o --color=no 'sql(.*,' /tmp/failures | sed 's/sql(//; s/,//'| sort | uniq -c | sort -n

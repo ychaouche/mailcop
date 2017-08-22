@@ -1,0 +1,2 @@
+./mailcop-ips | cut -f 2 -d, | sort  | uniq -c | sort -n
+

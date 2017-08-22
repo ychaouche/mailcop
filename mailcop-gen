@@ -1,0 +1,5 @@
+REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+echo Generating /tmp/failures
+egrep '(unknown.user|Password.mismatch)' /var/log/dovecot.log | grep --color=no $REGX_IP  > /tmp/failures
+echo /tmp/failures generated.
+echo now run mailcop-static
