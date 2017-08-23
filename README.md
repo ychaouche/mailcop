@@ -15,18 +15,21 @@ Aug 22 18:07:31 aine3@mydomain.tld                  36.34.121.162:
 Aug 22 18:07:44 aisonradio                          222.137.252.18:
 Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:   
 ```
-Requirements:
+##Requirements
 You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
 If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
 You'll also need to install the geoiplookup command
 
-Stats :
+##Installation
+No installation required, just download the scripts in some directory, then either execute `mailcop` for realtime analysis or `mailcop-gen` and `mailcop-static` for static analysis of past attacks. You can also call any of `mailcop-ips`, `mailcop-logins` or `mailcop-countries` for stats about IP, logins and countries that attacks originate from. 
+
+##Stats
 
 You can get stats with mailcop-ips, mailcop-logins and mailcop-countries
 
 Here's how they work : You first generate stats with mailcop-gen, then call any of the scripts mailcop-ips, mailcop-logins or mailcop-countries.
 
-Example :
+##Example
 ```
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-gen
 Generating /tmp/failures
