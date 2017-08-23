@@ -16,9 +16,9 @@ Aug 22 18:07:44 aisonradio                               222.137.252.18:
 Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:   
 ```
 Requirements:
-
-    You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
-    If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
+You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
+If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
+You'll also need to install the geoiplookup command
 
 Stats :
 
