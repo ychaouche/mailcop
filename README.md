@@ -75,4 +75,77 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
 ```
 
+## The daily cronjob
+
+In the etc directory you'll find a mailcop cron job that would send daily statistics about the failed authentication attempts on your mail server. Here's an example mail it sends : 
+
+```
+Mailcop
+=======
+Statistiques des dernières attaques sur notre serveur de messagerie
+Début : Aug 22 16:31:09
+Fin   : Aug 23 11:59:28
+
+
+Top 10 des pays
+---------------
+    308  China
+     33  Brazil
+     26  Russian Federation
+     19  United States
+     18  Taiwan
+     15  Mexico
+     14  India
+      9  Korea
+      8  Vietnam
+      8  Argentina
+
+
+
+Top 10 des addresses IP
+-----------------------
+192.168.100.82   184 IP Address not found
+80.82.78.104      15 NL, Netherlands  
+80.82.65.56       12 NL, Netherlands  
+81.45.170.67      10 ES, Spain  
+181.209.223.108    9 GT, Guatemala  
+94.102.51.31       8 NL, Netherlands  
+88.220.44.47       8 PL, Poland  
+218.107.46.228     8 CN, China  
+191.96.249.65      8 CL, Chile  
+59.125.182.141     7 TW, Taiwan  
+
+
+
+Top 10 des logins utilisés
+--------------------------
+    184 application@mydomain.tld
+     29 blanc_antenne@mydomain.tld
+     28 blank_control@mydomain.tld
+     27 blank_control
+     27 blanc_antenne
+     20 digi
+     20 a.chaouche
+     19 info@mydomain.tld
+     19 info
+     19 chaine3@mydomain.tld
+
+
+
+Dernières attaques
+------------------
+Aug 23 11:56:27 application@mydomain.tld            192.168.100.82:
+Aug 23 11:56:41 ray                                 187.94.111.100:
+Aug 23 11:57:03 blank_control                       115.114.40.105:
+Aug 23 11:58:32 chaine2@mydomain.tld                122.255.115.242:
+Aug 23 11:58:32 chaine3@mydomain.tld                59.127.65.34:
+Aug 23 11:58:32 chaine1@mydomain.tld                221.207.29.94:
+Aug 23 11:58:59 chaine2                             179.185.174.73:
+Aug 23 11:59:12 veritas                             12.130.172.232:
+Aug 23 11:59:13 chaine1                             5.228.18.204:
+Aug 23 11:59:28 chaine3                             58.22.194.44:
+
+```
+
+
 Questions / criticisme to @ychaouche
