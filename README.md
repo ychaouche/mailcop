@@ -6,13 +6,13 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop
 Aug 22 18:06:02 a.chaouche@mydomain.tld             221.7.96.91:
 Aug 22 18:06:07 adiomitidjann@mydomain.tld          58.20.55.71:
 Aug 22 18:06:08 adioelbahdja@mydomain.tld           218.107.46.228:
-Aug 22 18:06:24 a.chaouche                               124.207.250.89:
-Aug 22 18:06:30 adioelbahdja                             63.227.77.160:
-Aug 22 18:06:31 adiomitidjann                            221.215.106.218:
-Aug 22 18:07:08 jon                                      105.226.222.70:
+Aug 22 18:06:24 a.chaouche                          124.207.250.89:
+Aug 22 18:06:30 adioelbahdja                        63.227.77.160:
+Aug 22 18:06:31 adiomitidjann                       221.215.106.218:
+Aug 22 18:07:08 jon                                 105.226.222.70:
 Aug 22 18:07:21 aisonradio@mydomain.tld             111.1.89.230:
 Aug 22 18:07:31 aine3@mydomain.tld                  36.34.121.162:
-Aug 22 18:07:44 aisonradio                               222.137.252.18:
+Aug 22 18:07:44 aisonradio                          222.137.252.18:
 Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:   
 ```
 Requirements:
