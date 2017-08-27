@@ -16,9 +16,13 @@ Aug 22 18:07:44 aisonradio                          222.137.252.18:
 Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:   
 ```
 ## Requirements
-You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
-If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
-You'll also need to install the geoiplookup command
+ * You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
+
+ * If you want to also monitor SASL attacks, you need to configure your SMTP server to use dovecot for SASL authentication.
+
+ * You'll also need to install the geoiplookup command
+ 
+ * If you're using fail2ban, the script also shows last banned IPs but you need to install shorewall and configure fail2ban actions to use `shorewall drop` or `shorewall logdrop`.
 
 ## Installation
 No installation required, just download the scripts in some directory, then either execute `mailcop` for realtime analysis or `mailcop-gen` and `mailcop-static` for static analysis of past attacks. You can also call any of `mailcop-ips`, `mailcop-logins` or `mailcop-countries` for stats about IP, logins and countries that attacks originate from. 
