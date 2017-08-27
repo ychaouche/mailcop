@@ -1,2 +1,4 @@
+#!/bin/bash
+echo insde mailcop-countries : begin
 ./mailcop-ips | cut -f 2 -d, | sort  | uniq -c | sort -n
-
+echo insde mailcop-countries : end

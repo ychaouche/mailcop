@@ -1,2 +1,15 @@
-REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+#!§bin/bash
+REGEX_IP=\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}
 tail -f /var/log/dovecot.log | egrep '(unknown.user|Password.mismatch)' --line-buffered | grep --color=no $REGX_IP  --line-buffered | sed -u 's/sql(//g; s/)//g; s/,/ /g;' | awk '{printf "%s %s %s %-40s %s\n",$1,$2,$3,$6,$7}' 
+
+# IFS=$'\n' 
+# read -d '' -a IPARRAY        < /tmp/mc_mailips
+# read -d '' -a USERSARRAY     < /tmp/mc_authusernames
+# read -d '' -a TIMESTAMPARRAY < /tmp/mc_authtimestamps
+
+# i=0
+# while ! [[ "${TIMESTAMPARRAY[$i]}" = '' ]]
+# do
+#     printf "%s : %-32s: %s\n"  ${TIMESTAMPARRAY[$i]} ${IPARRAY[$i]} ${USERSARRAY[$i]}
+#     i=$(($i+1))
+# done
