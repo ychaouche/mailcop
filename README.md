@@ -84,73 +84,88 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL #
 
 ## The daily cronjob
 
-In the etc directory you'll find a mailcop cron job that would send daily statistics about the failed authentication attempts on your mail server. Here's an example mail it sends : 
+mailcop-mailer is meant to be run as a cron job that would send daily statistics about the failed authentication attempts on your mail server. Here's an example mail it sends : 
 
 ```
 Mailcop
 =======
 Statistiques des dernières attaques sur notre serveur de messagerie
-Début : Aug 22 16:31:09
-Fin   : Aug 23 11:59:28
+Début : Aug 27 06:26:24
+Fin   : Aug 27 16:37:47
 
 
 Top 10 des pays
 ---------------
-    308  China
-     33  Brazil
-     26  Russian Federation
-     19  United States
-     18  Taiwan
-     15  Mexico
-     14  India
-      9  Korea
-      8  Vietnam
-      8  Argentina
+     10  Brazil
+      9  China
+      6  Mexico
+      5  Colombia
+      5  Chile
+      4  United States
+      3  Vietnam
+      3  Taiwan
+      3  South Africa
+      2  Turkey
 
 
 
 Top 10 des addresses IP
 -----------------------
-192.168.100.82   184 IP Address not found
-80.82.78.104      15 NL, Netherlands  
-80.82.65.56       12 NL, Netherlands  
-81.45.170.67      10 ES, Spain  
-181.209.223.108    9 GT, Guatemala  
-94.102.51.31       8 NL, Netherlands  
-88.220.44.47       8 PL, Poland  
-218.107.46.228     8 CN, China  
-191.96.249.65      8 CL, Chile  
-59.125.182.141     7 TW, Taiwan  
+192.168.100.82    96 IP Address not found
+10.10.10.19       38 IP Address not found
+52.169.26.62       6 US, United States
+41.73.125.74       5 ML, Mali  
+93.149.107.116     4 IT, Italy  
+80.147.168.27      4 DE, Germany  
+59.100.16.223      4 AU, Australia  
+37.211.146.162     4 QA, Qatar  
+37.189.246.168     4 PT, Portugal  
+31.149.66.65       4 NL, Netherlands  
 
 
 
 Top 10 des logins utilisés
 --------------------------
-    184 application@mydomain.tld
-     29 blanc_antenne@mydomain.tld
-     28 blank_control@mydomain.tld
-     27 blank_control
-     27 blanc_antenne
-     20 digi
-     20 a.chaouche
-     19 info@mydomain.tld
-     19 info
-     19 chaine3@mydomain.tld
+     96 application@domain.tld
+     15 n.chabi@algrian-radio.dz
+     10 radiobahdja16@gmail.com
+      4 dafchaine1@algerien-radio.dz
+      3 test
+      3 postmaster
+      3 dafchaine1@eprs.dz
+      2 student
+      2 spam
+      2 sales
 
 
 
 Dernières attaques
 ------------------
-Aug 23 11:56:27 application@mydomain.tld            192.168.100.82:
-Aug 23 11:56:41 ray                                 187.94.111.100:
-Aug 23 11:57:03 blank_control                       115.114.40.105:
-Aug 23 11:58:32 chaine2@mydomain.tld                122.255.115.242:
-Aug 23 11:58:32 chaine3@mydomain.tld                59.127.65.34:
-Aug 23 11:58:32 chaine1@mydomain.tld                221.207.29.94:
-Aug 23 11:58:59 chaine2                             179.185.174.73:
-Aug 23 11:59:12 veritas                             12.130.172.232:
-Aug 23 11:59:13 chaine1                             5.228.18.204:
-Aug 23 11:59:28 chaine3                             58.22.194.44:
+Aug 27 16:18:00 training                          190.147.156.214:
+Aug 27 16:21:25 application@domain.tld            192.168.100.82:
+Aug 27 16:21:25 student                           190.67.161.242:
+Aug 27 16:24:28 ftpuser                           86.35.227.122:
+Aug 27 16:27:43 application@domain.tld            192.168.100.82:
+Aug 27 16:27:56 webmaster                         41.180.72.44:
+Aug 27 16:31:28 audit                             201.131.240.134:
+Aug 27 16:34:01 application@domain.tld            192.168.100.82:
+Aug 27 16:34:27 internet                          52.174.4.62:
+Aug 27 16:37:47 service                           80.147.168.27:
+
+
+
+Les 10 dernières addresses bloquées
+-----------------------------------
+ pkts bytes target     prot opt in     out     source               destination         
+    1    60 reject     all  --  *      *       222.162.70.249       0.0.0.0/0           
+    0     0 reject     all  --  *      *       60.216.106.162       0.0.0.0/0           
+    0     0 reject     all  --  *      *       118.163.58.117       0.0.0.0/0           
+    0     0 reject     all  --  *      *       218.62.67.138        0.0.0.0/0           
+    0     0 reject     all  --  *      *       122.146.88.186       0.0.0.0/0           
+    0     0 reject     all  --  *      *       211.141.174.226      0.0.0.0/0           
+    0     0 reject     all  --  *      *       61.163.231.213       0.0.0.0/0           
+    0     0 reject     all  --  *      *       221.228.229.49       0.0.0.0/0           
+   21  1064 reject     all  --  *      *       200.49.145.161       0.0.0.0/0           
 
 ```
 
