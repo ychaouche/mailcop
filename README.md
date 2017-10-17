@@ -151,87 +151,90 @@ The last command was operated on multiple files with ``mailcop-gen /var/log/dove
 
 mailcop-mailer is meant to be run as a cron job that would send daily statistics about the failed authentication attempts on your mail server. Here's an example mail it sends : 
 
-```
-Mailcop
-=======
+```            _ _             
+ _ __  __ _(_) |__ ___ _ __
+| '  \/ _` | | / _/ _ \ '_ \
+|_|_|_\__,_|_|_\__\___/ .__/
+                      |_|   
+
 Statistiques des dernières attaques sur notre serveur de messagerie
-Début : Aug 27 06:26:24
-Fin   : Aug 27 16:37:47
+Début             : Oct 16 06:26:23
+Fin               : Oct 17 06:12:26
+Nombre d'attaques : 360
 
 
 Top 10 des pays
 ---------------
-     10  Brazil
-      9  China
-      6  Mexico
-      5  Colombia
-      5  Chile
-      4  United States
+     29  China
+     16  Brazil
+      7  Argentina
+      6  Australia
+      4  Colombia
       3  Vietnam
       3  Taiwan
-      3  South Africa
-      2  Turkey
+      2  South Africa
+      2  Peru
+      2  Malaysia
 
 
 
 Top 10 des addresses IP
 -----------------------
-192.168.100.82    96 IP Address not found
-10.10.10.19       38 IP Address not found
-52.169.26.62       6 US, United States
-41.73.125.74       5 ML, Mali  
-93.149.107.116     4 IT, Italy  
-80.147.168.27      4 DE, Germany  
-59.100.16.223      4 AU, Australia  
-37.211.146.162     4 QA, Qatar  
-37.189.246.168     4 PT, Portugal  
-31.149.66.65       4 NL, Netherlands  
+10.10.10.19       19 IP Address not found
+41.226.11.226     10 TN, Tunisia  
+200.77.217.106    10 MX, Mexico  
+181.143.94.74     10 CO, Colombia  
+181.143.83.140     9 CO, Colombia  
+118.163.4.1        8 TW, Taiwan  
+103.6.12.229       8 AU, Australia  
+93.207.49.135      7 DE, Germany  
+61.69.110.138      7 AU, Australia  
+190.2.52.53        7 AR, Argentina  
 
 
 
 Top 10 des logins utilisés
 --------------------------
-     96 application@domain.tld
-     15 n.chabi@algrian-radio.dz
-     10 radiobahdja16@gmail.com
-      4 dafchaine1@algerien-radio.dz
-      3 test
-      3 postmaster
-      3 dafchaine1@eprs.dz
-      2 student
-      2 spam
-      2 sales
+      8 info
+      6 radiomitidja
+      5 sde
+      4 t.meziane@radioalgerian-gmail.dz
+      4 relex@mydomain.tld
+      4 it
+      4 badmin@mydomain.tld
+      4 arch-admin@mydomain.tld
+      3 y.hamen@mydomain.tld
+      3 y.hamen
 
 
 
 Dernières attaques
 ------------------
-Aug 27 16:18:00 training                          190.147.156.214:
-Aug 27 16:21:25 application@domain.tld            192.168.100.82:
-Aug 27 16:21:25 student                           190.67.161.242:
-Aug 27 16:24:28 ftpuser                           86.35.227.122:
-Aug 27 16:27:43 application@domain.tld            192.168.100.82:
-Aug 27 16:27:56 webmaster                         41.180.72.44:
-Aug 27 16:31:28 audit                             201.131.240.134:
-Aug 27 16:34:01 application@domain.tld            192.168.100.82:
-Aug 27 16:34:27 internet                          52.174.4.62:
-Aug 27 16:37:47 service                           80.147.168.27:
+Oct 17 05:33:30 culture                                  91.183.212.186:
+Oct 17 05:37:51 custodia                                 123.56.151.114:
+Oct 17 05:42:08 cynthia                                  41.191.224.5:
+Oct 17 05:44:20 dalton                                   91.183.212.186:
+Oct 17 05:50:54 daniele                                  118.163.4.1:
+Oct 17 05:59:29 db                                       115.75.0.178:
+Oct 17 06:01:39 dealer                                   123.56.151.114:
+Oct 17 06:05:58 diane                                    181.143.83.140:
+Oct 17 06:08:10 dimas                                    118.163.4.1:
+Oct 17 06:12:26 direccion                                93.207.49.135:
 
 
 
 Les 10 dernières addresses bloquées
 -----------------------------------
  pkts bytes target     prot opt in     out     source               destination         
-    1    60 reject     all  --  *      *       222.162.70.249       0.0.0.0/0           
-    0     0 reject     all  --  *      *       60.216.106.162       0.0.0.0/0           
-    0     0 reject     all  --  *      *       118.163.58.117       0.0.0.0/0           
-    0     0 reject     all  --  *      *       218.62.67.138        0.0.0.0/0           
-    0     0 reject     all  --  *      *       122.146.88.186       0.0.0.0/0           
-    0     0 reject     all  --  *      *       211.141.174.226      0.0.0.0/0           
-    0     0 reject     all  --  *      *       61.163.231.213       0.0.0.0/0           
-    0     0 reject     all  --  *      *       221.228.229.49       0.0.0.0/0           
-   21  1064 reject     all  --  *      *       200.49.145.161       0.0.0.0/0           
-
+    6   304 reject     all  --  *      *       123.52.76.74         0.0.0.0/0           
+    0     0 reject     all  --  *      *       60.167.113.119       0.0.0.0/0           
+   21  1064 reject     all  --  *      *       103.6.12.229         0.0.0.0/0           
+    3   144 reject     all  --  *      *       118.113.45.212       0.0.0.0/0           
+    7   420 reject     all  --  *      *       200.77.217.106       0.0.0.0/0           
+    9   456 reject     all  --  *      *       181.143.94.74        0.0.0.0/0           
+    6   304 reject     all  --  *      *       182.38.33.36         0.0.0.0/0           
+    6   304 reject     all  --  *      *       59.25.144.187        0.0.0.0/0           
+    3   152 reject     all  --  *      *       41.162.66.100        0.0.0.0/0           
 ```
 
 # Contact
