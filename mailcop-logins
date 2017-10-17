@@ -1,2 +1,10 @@
 #!/bin/bash
-grep -o --color=no 'sql(.*,' /tmp/failures | sed 's/sql(//; s/,//'| sort | uniq -c | sort -n
+
+if [[ $# != 0 ]]
+then
+    #grep "$1" /tmp/failures | awk '{printf "%s %s %s %s\n",$1,$2,$3,$6 }'  | sed  's/sql(//; s/,.*)://'
+    ./mailcop-static | grep "$1" | cut -f 1-4 -d ' '
+else
+    grep -o --color=no 'sql(.*,' /tmp/failures | sed 's/sql(//; s/,//'| sort | uniq -c | sort -n
+fi
+
