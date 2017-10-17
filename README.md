@@ -2,18 +2,24 @@
 
  Monitor dovecot/postfix auth attacks in realtime with this simple script :
 ```
-root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop
-Aug 22 18:06:02 a.chaouche@mydomain.tld             221.7.96.91:
-Aug 22 18:06:07 adiomitidjann@mydomain.tld          58.20.55.71:
-Aug 22 18:06:08 adioelbahdja@mydomain.tld           218.107.46.228:
-Aug 22 18:06:24 a.chaouche                          124.207.250.89:
-Aug 22 18:06:30 adioelbahdja                        63.227.77.160:
-Aug 22 18:06:31 adiomitidjann                       221.215.106.218:
-Aug 22 18:07:08 jon                                 105.226.222.70:
-Aug 22 18:07:21 aisonradio@mydomain.tld             111.1.89.230:
-Aug 22 18:07:31 aine3@mydomain.tld                  36.34.121.162:
-Aug 22 18:07:44 aisonradio                          222.137.252.18:
-Aug 22 18:07:44 a.chaouche@mydomain.tld             183.234.60.38:   
+root@messagerie[10.10.10.19] ~ # /root/SCRIPTS/MAIL/mailcop
+Oct 17 10:57:07 mantenimiento                            61.69.108.150:
+Oct 17 11:01:20 marco                                    117.56.187.240:
+Oct 17 11:03:37 margo                                    177.179.246.135:
+Oct 17 11:08:10 marianne                                 177.179.98.220:
+Oct 17 11:10:16 marion                                   115.75.0.178:
+Oct 17 11:11:00 k.benismael@mydomain.tld                 10.10.10.19:
+Oct 17 11:15:06 boultiour.mess@mydomain.tld              110.249.221.130:
+Oct 17 11:15:39 boultiour.mess                           61.185.139.72:
+Oct 17 11:17:02 mary                                     177.43.213.86:
+Oct 17 11:23:41 matt                                     201.33.193.166:
+Oct 17 11:28:01 i.chaouati@mydomain.tld                  10.10.10.19:
+Oct 17 11:32:33 mb                                       91.237.124.222:
+Oct 17 11:34:54 mcbride                                  187.94.111.100:
+Oct 17 11:43:32 michel                                   179.185.95.114:
+Oct 17 11:46:37 i.aitahmed                               10.10.10.19:
+Oct 17 11:52:10 monica                                   200.49.145.161:
+Oct 17 11:54:23 moreno                                   190.86.183.117:
 ```
 ## Requirements
  * You need to set auth_debug = yes in /etc/dovecot/conf.d/10-logging.conf
@@ -41,17 +47,26 @@ Generating /tmp/failures
 now run mailcop
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-ips 
 [...]
-218.107.46.228          2  CN, China
-218.207.74.9            2  CN, China
-218.60.28.126           2  CN, China
-221.1.107.142           2  CN, China
-36.34.121.162           2  CN, China
-60.13.230.163           2  CN, China
-80.82.65.56             2  NL, Netherlands
-94.102.51.31            2  NL, Netherlands
-192.168.100.82          17  IP Address not found
+154.235.28.12           3  IP Address not found
+179.185.95.114          3  BR, Brazil
+84.241.175.107          3  NL, Netherlands
+91.237.124.222          3  UA, Ukraine
+171.11.77.194           5  CN, China
+10.10.10.19             8  IP Address not found
 ```
-Most attacks seem to come from China
+
+If one IP in particular catches your attention, you can list its attacks by supplying an argument : 
+
+```
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-ips 84.241.175.107
+Oct 17 06:27:47 dummy
+Oct 17 07:48:37 gavin
+Oct 17 09:42:42 kato
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
+```
+
+You can also list attacks by country
+
 ```
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-countries 
 [...]
@@ -81,6 +96,56 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins
      17 application@mydomain.tld
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
 ```
+
+By supplying an argument, I can also track when did attacks occure with a specific login : 
+
+```
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins hamel
+Oct 17 10:14:43 y.hamel@mydomain.tld
+Oct 17 10:15:16 y.hamel
+Oct 16 11:00:27 y.hamel@mydomain.tld
+Oct 16 11:01:26 y.hamel
+Oct 16 20:13:59 y.hamel@mydomain.tld
+Oct 16 20:14:35 y.hamel
+Oct 17 03:19:22 y.hamel@mydomain.tld
+Oct 17 03:19:49 y.hamel
+Oct 15 13:03:25 y.hamel@mydomain.tld
+Oct 15 13:03:59 y.hamel
+Oct 15 20:16:09 y.hamel@mydomain.tld
+Oct 15 20:16:39 y.hamel
+Oct 16 03:28:14 y.hamel@mydomain.tld
+Oct 16 03:29:05 y.hamel
+Oct 14 07:36:11 y.hamel@mydomain.tld
+Oct 14 07:36:39 y.hamel
+Oct 14 14:24:49 y.hamel@mydomain.tld
+Oct 14 14:27:18 y.hamel
+Oct 14 21:11:42 y.hamel@mydomain.tld
+Oct 14 21:12:15 y.hamel
+Oct 13 11:47:13 y.hamel@mydomain.tld
+Oct 13 11:47:50 y.hamel
+Oct 13 18:49:22 y.hamel@mydomain.tld
+Oct 13 18:49:53 y.hamel
+Oct 14 01:04:20 y.hamel@mydomain.tld
+Oct 14 01:04:50 y.hamel
+Oct 12 11:10:00 y.hamel@mydomain.tld
+Oct 12 11:10:28 y.hamel
+Oct 12 18:01:17 y.hamel@mydomain.tld
+Oct 12 18:02:00 y.hamel
+Oct 13 00:15:44 y.hamel@mydomain.tld
+Oct 13 00:16:14 y.hamel
+Oct 11 07:10:16 y.hamel@mydomain.tld
+Oct 11 07:10:43 y.hamel
+Oct 11 17:56:40 y.hamel@mydomain.tld
+Oct 11 17:57:06 y.hamel
+Oct 12 04:17:56 y.hamel@mydomain.tld
+Oct 12 04:18:24 y.hamel
+Oct 10 18:46:53 y.hamel@mydomain.tld
+Oct 10 18:47:31 y.hamel
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
+```
+
+The last command was operated on multiple files with ``mailcop-gen /var/log/dovecot.log*``
+
 
 ## The daily cronjob
 
