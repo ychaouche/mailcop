@@ -1,0 +1,13 @@
+#!/bin/bash
+# this script is supposed to be piped from other mailcop scripts
+# from which the first grep is reading
+# it does the main job of converting what should be dovecot logs into the desired output of mailcop
+# which is :
+# 
+# @timestamp	login	@ip	country
+
+REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+PATH=/usr/bin:/bin/:/usr/local/scripts/mail/:
+
+
+grep --color=no "$REGX_IP" --line-buffered | sed -u "s/sql(//g; s/)//g; s/,/ /g;s/\($REGX_IP\):/\1/" | awk '{country="undef"; "geoiplookup " $7 | getline country; close("geoiplookup " $7); printf "%s %s %s %-40s %-16s %s\n",$1,$2,$3,$6,$7,country; fflush()}; ' | sed -u "s/GeoIP Country Edition://; s/, Republic of//; s/..,//"

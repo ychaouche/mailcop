@@ -1,4 +1,5 @@
 #!/bin/bash
-echo insde mailcop-countries : begin
-./mailcop-ips | cut -f 2 -d, | sort  | uniq -c | sort -n
-echo insde mailcop-countries : end
+REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+PATH=/usr/bin:/bin/:/usr/local/scripts/mail/:
+
+mailcop-ips $@ | cut -f 2 -d, | sort  | uniq -c | sort -n

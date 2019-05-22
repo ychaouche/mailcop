@@ -1,3 +1,37 @@
 #!/bin/bash
-REGEX_IP=\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}
-tail -f /var/log/dovecot.log | egrep '(unknown.user|Password.mismatch)' --line-buffered | grep --color=no $REGX_IP  --line-buffered | sed -u 's/sql(//g; s/)//g; s/,/ /g;' | awk '{printf "%s %s %s %-40s %s\n",$1,$2,$3,$6,$7}' 
+REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+PATH=/usr/bin:/bin/:/usr/local/scripts/mail/:
+
+function mailcop_all {
+    /bin/ls -1rt /var/log/dovecot.log* | while read -r filename
+					 do			      
+					     zegrep -h '(unknown.user|Password.mismatch)' $filename 
+					 done | mailcop-filter    
+}
+
+function mailcop_current {
+    egrep '(unknown.user|Password.mismatch)' /var/log/dovecot.log | mailcop-filter
+}
+
+function mailcop_follow {
+    tail -f /var/log/dovecot.log |  egrep '(unknown.user|Password.mismatch)'  --line-buffer | mailcop-filter
+}
+
+if [[ $# -ge 1 ]]
+then
+    option=${1:1:1}
+fi
+
+case $option in
+    a)
+	mailcop_all
+	;;
+    f)
+	mailcop_follow
+	;;
+    *)
+	mailcop_current
+	;;
+esac
+
+

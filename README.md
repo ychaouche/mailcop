@@ -1,8 +1,9 @@
 # mailcop
 
- Monitor dovecot/postfix auth attacks in realtime with this simple script :
+Monitor dovecot/postfix auth attacks in realtime with this simple script :
+
 ```
-root@messagerie[10.10.10.19] ~ # /root/SCRIPTS/MAIL/mailcop
+root@messagerie[10.10.10.19] ~ # /root/SCRIPTS/MAIL/mailcop -f
 Oct 17 10:57:07 mantenimiento                            61.69.108.150:
 Oct 17 11:01:20 marco                                    117.56.187.240:
 Oct 17 11:03:37 margo                                    177.179.246.135:
@@ -31,20 +32,15 @@ Oct 17 11:54:23 moreno                                   190.86.183.117:
  * If you're using fail2ban, the script also shows last banned IPs but you need to install shorewall and configure fail2ban actions to use `shorewall drop` or `shorewall logdrop`.
 
 ## Installation
-No installation required, just download the scripts in some directory, then either execute `mailcop` for realtime analysis or `mailcop-gen` and `mailcop-static` for static analysis of past attacks. You can also call any of `mailcop-ips`, `mailcop-logins` or `mailcop-countries` for stats about IP, logins and countries that attacks originate from. 
+No installation required, just download the scripts in some directory, then either execute `mailcop -f` (follow) for realtime reporting or `mailcop` and `mailcop -a` to report past attacks (-a for all attacks). You can also call any of `mailcop-ips`, `mailcop-logins` or `mailcop-countries` for stats about IP, logins and countries that attacks originate from. `mailcop-info` on any IP, country or login to get corresponding attacks. The `-a` switch works with all mailcop* commands and will scan all dovecot log files instead of just dovecot.log (usually 24h). 
 
 ## Stats
 
 You can get stats with mailcop-ips, mailcop-logins and mailcop-countries
 
-Here's how they work : You first generate stats with mailcop-gen, then call any of the scripts mailcop-ips, mailcop-logins or mailcop-countries.
+Here's how they look
 
-## Example
 ```
-root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-gen
-Generating /tmp/failures
-/tmp/failures generated.
-now run mailcop
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-ips 
 [...]
 154.235.28.12           3  IP Address not found
@@ -55,10 +51,10 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-ips
 10.10.10.19             8  IP Address not found
 ```
 
-If one IP in particular catches your attention, you can list its attacks by supplying an argument : 
+If one IP in particular catches your attention, you can list its attacks by supplying an argument to mailcop-info: 
 
 ```
-root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-ips 84.241.175.107
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-info 84.241.175.107
 Oct 17 06:27:47 dummy
 Oct 17 07:48:37 gavin
 Oct 17 09:42:42 kato
@@ -81,7 +77,7 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-countries
      59  China
      
 ```
-And here I can see what accounts are trying to be hacked the most :
+And here I can see what accounts are trying to get hacked the most :
 ```
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins 
 [...]
@@ -97,10 +93,10 @@ root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
 ```
 
-By supplying an argument, I can also track when did attacks occure with a specific login : 
+By supplying an argument to `mailcop-info`, I can also track when did attacks occure with a specific login : 
 
 ```
-root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-logins hamel
+root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # ./mailcop-info hamel
 Oct 17 10:14:43 y.hamel@mydomain.tld
 Oct 17 10:15:16 y.hamel
 Oct 16 11:00:27 y.hamel@mydomain.tld
@@ -144,12 +140,10 @@ Oct 10 18:47:31 y.hamel
 root@messagerie[10.10.10.19] ~/SCRIPTS/MAIL # 
 ```
 
-The last command was operated on multiple files with ``mailcop-gen /var/log/dovecot.log*``
-
 
 ## The daily cronjob
 
-mailcop-mailer is meant to be run as a cron job that would send daily statistics about the failed authentication attempts on your mail server. Here's an example mail it sends : 
+mailcop-mailer is meant to be run as a cron job that would send daily statistics about failed authentication attempts on your mail server. It simply calls the different `mailcop-*` commands and concatenates the output in a single e-mail. Here's an example mail it sends : 
 
 ```            _ _             
  _ __  __ _(_) |__ ___ _ __
@@ -236,6 +230,8 @@ Les 10 dernières addresses bloquées
     6   304 reject     all  --  *      *       59.25.144.187        0.0.0.0/0           
     3   152 reject     all  --  *      *       41.162.66.100        0.0.0.0/0           
 ```
+
+The last listing is that of the `shorewall show dyanmic` command (shorewall needed)
 
 # Contact
 

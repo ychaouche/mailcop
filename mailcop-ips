@@ -1,13 +1,9 @@
 #!/bin/bash
 REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
+PATH=/usr/bin:/bin/:/usr/local/scripts/mail/:
 
-if [[ $# != 0 ]]
-then
-    ./mailcop-static | grep "$1" | cut -f 1-4 -d ' '
-else
-    grep --color=no -o "$REGX_IP" /tmp/failures | sort | uniq -c | sort -n | awk '{ "geoiplookup " $2 "| cut -f2 -d: " | getline geoip; print $2 "\t\t" $1 " " geoip}'
+# supports -a
 
-fi
+mailcop $@ | grep -o "$REGX_IP" | sort | uniq -c | sort -n | awk '{ "geoiplookup " $2 "| cut -f2 -d: " | getline geoip; print $2 "\t\t" $1 " " geoip}'
 
-
-
+	

@@ -2,6 +2,9 @@
 REGX_IP="\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}"
 PATH=/usr/bin:/bin/:/usr/local/scripts/mail/:
 
-# supports -a
-
-mailcop $@ | awk '{print $4}' | sed 's/sql(//; s/,//'| sort | uniq -c | sort -n
+if [[ "$1" == "-a" ]]
+then
+    mailcop -a | grep -i "$2"
+else
+    mailcop | grep -i "$1"
+fi

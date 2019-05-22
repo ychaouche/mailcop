@@ -1,3 +1,0 @@
-#!/bin/bash
-sed 's/sql(//g; s/)//g; s/,/ /g;' < /tmp/failures | awk '{printf "%s %s %s %-40s %s\n",$1,$2,$3,$6,$7}' 
-

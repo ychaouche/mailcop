@@ -1,9 +1,10 @@
 #!/bin/bash
-cd /root/SCRIPTS/MAIL
-./mailcop-gen
+PATH=/bin/:/usr/bin/:/usr/local/scripts/mail
 
-debut=$(awk 'NR==1 {printf "%s %s %s\n",$1,$2,$3}'  < /tmp/failures)
-fin=$(awk 'END{printf "%s %s %s\n",$1,$2,$3}'  < /tmp/failures)
+mailcop > /tmp/mailcop-static
+
+debut=$(awk 'NR==1 {printf "%s %s %s\n",$1,$2,$3}'  < /tmp/mailcop-static)
+fin=$(awk 'END{printf "%s %s %s\n",$1,$2,$3}'  < /tmp/mailcop-static)
 
 
 figlet -f small mailcop > /tmp/mailcop-stats
@@ -16,7 +17,7 @@ echo >> /tmp/mailcop-stats
 echo -e "Statistiques des dernières attaques sur notre serveur de messagerie" >> /tmp/mailcop-stats
 echo -e "Début             : $debut" >> /tmp/mailcop-stats
 echo -e "Fin               : $fin" >> /tmp/mailcop-stats
-echo -e "Nombre d'attaques : $(wc -l /tmp/failures | awk '{print $1}')" >> /tmp/mailcop-stats
+echo -e "Nombre d'attaques : $(wc -l /tmp/mailcop-static | awk '{print $1}')" >> /tmp/mailcop-stats
 echo -e "\n" >> /tmp/mailcop-stats
 
 
@@ -25,14 +26,14 @@ echo -e "---------------" >> /tmp/mailcop-stats
 
 
 
-./mailcop-countries | sort -rn  | head >> /tmp/mailcop-stats
+mailcop-countries | sort -rn  | head >> /tmp/mailcop-stats
 
 echo -e "\n\n" >> /tmp/mailcop-stats
 
 echo -e "Top 10 des addresses IP" >> /tmp/mailcop-stats
 echo -e "-----------------------" >> /tmp/mailcop-stats
 
-./mailcop-ips | sort -k 2 -r -n | head | awk '{printf "%-16s %3d %s %s %s %s\n",$1,$2,$3,$4,$5,$6}' >> /tmp/mailcop-stats
+mailcop-ips | sort -k 2 -r -n | head | awk '{printf "%-16s %3d %s %s %s %s\n",$1,$2,$3,$4,$5,$6}' >> /tmp/mailcop-stats
 
 echo -e "\n\n" >> /tmp/mailcop-stats
 echo -e "Top 10 des logins utilisés" >> /tmp/mailcop-stats
@@ -40,14 +41,14 @@ echo -e "--------------------------" >> /tmp/mailcop-stats
 
 
 
-./mailcop-logins | sort -nr | head >> /tmp/mailcop-stats
+mailcop-logins | sort -nr | head >> /tmp/mailcop-stats
 
 
 echo -e "\n\n" >> /tmp/mailcop-stats
 echo -e "Dernières attaques" >> /tmp/mailcop-stats
 echo -e "------------------" >> /tmp/mailcop-stats
 
-./mailcop-static | tail >> /tmp/mailcop-stats
+tail /tmp/mailcop-static >> /tmp/mailcop-stats
 
 echo -e "\n\n" >> /tmp/mailcop-stats
 echo -e "Les 10 dernières addresses bloquées" >> /tmp/mailcop-stats
@@ -60,6 +61,6 @@ echo -e "-----------------------------------" >> /tmp/mailcop-stats
 /sbin/shorewall show dynamic | sed -n '6p' >> /tmp/mailcop-stats
 /sbin/shorewall show dynamic | tail -10 >> /tmp/mailcop-stats
 
-mailx -s "Mailcop statistics" "insert your email here" < /tmp/mailcop-stats
-
+mailx -s "Mailcop statistics" it_sys+mailcop@algerian-radio.dz it_head+mailcop@algerian-radio.dz < /tmp/mailcop-stats
+#mailx -s "Mailcop statistics" a.chaouche@algerian-radio.dz < /tmp/mailcop-stats
 
