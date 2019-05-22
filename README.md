@@ -23,7 +23,7 @@ Oct 17 11:52:10 monica                                   200.49.145.161:
 Oct 17 11:54:23 moreno                                   190.86.183.117:
 ```
 
-## Démo
+## Demo
 https://vimeo.com/337750376
 
 ## Requirements
